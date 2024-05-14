@@ -1,0 +1,185 @@
+WindowManager:
+	MainWindow:
+<MainWindow>:
+	name : 'main_face'
+	inp : inp
+	label : label
+	input : input
+	lbl : lbl
+	inp2:inp2
+	label2:label2
+    Screen :
+	    MDNavigationLayout :
+	        ScreenManager :
+	   	     Screen :
+	   	         BoxLayout :
+	   	         	orientation : 'vertical'
+	   	         	MDBottomNavigation:
+	   			     	panel_color: 1, 1, 1, 1
+	   			     	MDBottomNavigationItem:
+	   			     		name: 'HomeScreen'
+	   			     		text: ''
+	   			     		icon: 'chemical-substances.png'
+	   			     		MDLabel:
+	    							id  : label
+	    							canvas.before :
+	    								Color:
+	    									rgba : 1,1,1,1
+	    								Rectangle :
+	    									pos : self.pos
+	    									size : self.size
+	    							halign : 'center'
+	    							text : ''
+	    							font_size : 70
+	    						MDIconButton :
+	    							icon: 'right-arrow.png'
+	    							pos_hint : {'x':0.4,'y':0.77}
+	    							on_press : inp.text += '='
+								MDIconButton :
+	    							icon: 'clipboard'
+									id: clip1
+	    							pos_hint : {'x':0.8,'y':0.6}
+	    							on_press : root.copy1()
+									on_press: clip1.icon = 'check'
+	    						MDIconButton :
+	    							icon: 'plus-small.png'
+	    							pos_hint : {'x':0.2,'y':0.77}
+	    							on_press : inp.text += '+'
+	    						MDIconButton :
+	    							icon: 'parentheses-grouping-symbol.png'
+	    							pos_hint : {'x':0.7,'y':0.77}
+	    							on_press : inp.text += '()'
+    							MDTextField:
+        							id: inp
+        							multiline : False
+        							pos_hint : {'x':0 , 'y':0.7}
+        							mode: "round"
+        							helper_text: 'Na + O2 = Na2O'
+        							on_text : label.text = ''
+									on_text: clip1.icon = 'clipboard'
+								MDLabel:
+									text:root.texti1
+									font_name:'alfont_com_DroidNaskh-Bold.ttf'
+									font_size:30
+									pos_hint:{'x':0.58 , 'y':0.23}
+    							MDIconButton :
+    								icon : 'magnify'
+    								on_press: root.elect()
+    								pos_hint : {'x':0 , 'y':0.6}
+	   			     	MDBottomNavigationItem:
+	   			     		name: 'adding'
+	   			     		text: ''
+	   			     		icon: 'phosphorus.png'
+    							MDLabel:
+	    							id  : lbl
+	    							canvas.before :
+	    								Color:
+	    									rgba : 1,1,1,1
+	    								Rectangle :
+	    									pos : self.pos
+	    									size : self.size
+	    							halign : 'center'
+	    							text : ''
+									font_name : 'alfont_com_DroidNaskh-Bold.ttf'
+	    							font_size : 60
+    							MDTextField:
+        							id: input
+        							multiline : False 
+        							on_text : input.text = input.text.capitalize()
+        							on_text : lbl.text = ''
+									on_text: clip2.icon = 'clipboard'
+        							pos_hint : {'x':0 , 'y':0.7}
+        							mode: "round"
+        							helper_text:'E330'
+								MDLabel:
+									text:root.texti
+									font_name:'alfont_com_DroidNaskh-Bold.ttf'
+									font_size:30
+									pos_hint:{'x':0.23 , 'y':0.23}
+    							MDIconButton :
+    								icon : 'magnify'
+    								on_press: root.search_word()
+    								pos_hint : {'x':0 , 'y':0.6}
+								MDIconButton :
+	    							icon: 'clipboard'
+									id: clip2
+	    							pos_hint : {'x':0.8,'y':0.6}
+	    							on_press : root.copy2()
+									on_press: clip2.icon = 'check'
+	   			     	MDBottomNavigationItem:
+	   			     		name: 'Weight'
+	   			     		text: ''
+	   			     		icon: 'atom'
+	   			     		MDLabel:
+	   			     			id : label2
+	    							canvas.before :
+	    								Color:
+	    									rgba : 1,1,1,1
+	    								Rectangle :
+	    									pos : self.pos
+	    									size : self.size
+	    							halign : 'center'
+	    							text : ''
+	    							font_size : 70
+    							MDTextField:
+    								id : inp2
+        							pos_hint : {'x':0 , 'y':0.7}
+        							mode: "round"
+        							helper_text:"Ca"
+        							multiline : False
+        							on_text : label2.text = ''
+        							on_text : inp2.text = inp2.text.capitalize()
+									on_text: clip3.icon = 'clipboard'
+								MDLabel:
+									text:root.texti2
+									font_name:'alfont_com_DroidNaskh-Bold.ttf'
+									font_size:30
+									pos_hint:{'x':0.28 , 'y':0.23}
+    							MDIconButton :
+    								icon : 'magnify'
+    								on_press : root.weight()
+    								pos_hint : {'x':0 , 'y':0.6}
+								MDIconButton :
+	    							icon: 'clipboard'
+									id: clip3
+	    							pos_hint : {'x':0.8,'y':0.6}
+	    							on_press : root.copy3()
+									on_press: clip3.icon = 'check'
+	   		     BoxLayout :
+	   			     orientation : 'vertical'
+	   				 MDTopAppBar :
+        					left_action_items : [['menu',lambda x: nav.set_state("open")]]
+	   				 Widget :
+		MDNavigationDrawer:
+			id: nav
+			BoxLayout:
+				orientation:'vertical'
+				Image:
+					source:'logo.png'
+					size: self.size
+				MDLabel:
+					text:root.texti3
+					font_name:'alfont_com_DroidNaskh-Bold.ttf'
+					halign:'right'
+					size_hint_y: None
+					height: self.texture_size[1]
+				MDLabel:
+					text:root.texti4
+					font_name:'alfont_com_DroidNaskh-Bold.ttf'
+					halign:'center'
+					size_hint_y: None
+					height: self.texture_size[1]
+					font_size:35
+				MDIconButton:
+					icon: 'youtube'
+					icon_size: '70dp'
+					pos_hint: {'x':0.3,'y':0}
+					on_press:root.lessons()
+				MDLabel:
+					text:''
+		MDLabel:
+			text:root.texti3
+			font_name:'alfont_com_DroidNaskh-Bold.ttf'
+			font_size:50
+			pos_hint:{'x':0.2 , 'y':0.46}
+			color : (1,1,1,1)
